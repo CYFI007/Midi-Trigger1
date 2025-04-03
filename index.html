@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI Random Trigger</title>
+    <link rel="stylesheet" href="Cool stuff.css">
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
+    <script src="script.js" type="module"></script>
+</head>
+<body>
+    <h1>MIDI Random Trigger</h1>
+    <h2>Choose Your Scale Below</h2>
+    <label for="scale"> Choose a scale:</label>
+    <select id="scale">
+        <option id="C maj" value="C3, D3, E3, F3, G3, A3, B3"> C MAJ</option>
+        <option id="C min" value="C3, D3, Eb3, F3, G3, Ab3, Bb3"> C MIN</option>
+        <option id="D maj" value="D3, E3, F#3, G3, A3, B3, C4"> D MAJ</option>
+        <option id="D min" value="D3, E3, F3, G3, A3, Bb3, C4,"> D MIN</option>
+    </select>
+        <h3> Connect a MIDI device and send bangs.</h3>
+            <h4> Have Fun! </h4>
+    <p> On this website you will be able to play random notes within a scale, outputing to your MIDI device </p>
+    <button type="button" id="TriggerBtn"> Trigger </button>
+    <button type="button" id="StopTriggerBtn"> Stop Trigger</button>
+
+
+    <div class="midi-data" id="midiData"></div>
+
+</body>
+</html>
