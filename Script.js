@@ -1,80 +1,88 @@
 const AudCtx = new AudioContext();  
 
-navigator.requestMIDIAccess();  //request MIDI access
+let midiAccess;
+let output;
 
-var inputs = MIDIAccess.inputs;
+navigator.requestMIDIAccess().then(onMIDISuccess);
 
-var outputs = MIDIAccess.outputs;
-
-WebMidi
+ //request MIDI access stuff
+ WebMidi
     .enable()
-    .then(()  => console.log("WebMidi Enabled"));   //enable web midi, then show webmidi enabled
+    .then(()  => console.log("WebMidi Enabled"));   //enable web midi, then show webm
+
+    //grabs output other if statement if not
+ function onMIDISuccess(midi) {
+    midiAccess = midi;
+    output = Array.from(midiAccess.outputs.values())[0]; // Get the first available output
+
+    if (!output) {
+        console.error("No MIDI output found.");
+        return;
+    }
 
   //was realtrigger  
 const cmajTrigger = document.getElementById("cmajTrigger");  //cmaj trigger button exists now
 const dmajTrigger = document.getElementById("dmajTrigger");     //d maj trigger button exists now
+const emajTrigger = document.getElementById("emajTrigger"); //e maj
+const fmajTrigger = document.getElementById("fmajTrigger"); //f maj
+const gmajTrigger = document.getElementById("gmajTrigger"); //g maj
+const amajTrigger = document.getElementById("amajTrigger"); //A maj
+const bmajorTrigger = document.getElementById("bmajTrigger");// b maj
 const stopTrigger = document.getElementById("StopTriggerBtn");  //stop trigger button exists now
 
+cmajTrigger.addEventListener("click", () => {
+    playScale([60, 62, 64, 65, 67, 69, 71, 72]);    //c maj scale midi numbers
+});
 
-//trigger note
-function PlayCMaj(MIDIAccess, portID)  {        
-    if (addEventListener("click", cmajTrigger)) {       //function, when cmaj trig button is clicked, the midi information wll be sent out.
-    const noteOn = [0x90, 60, 0x7f]; //note on, middle C, Full velocity ON
-        output.send([0x80, 60, 0x00], performance.now() + 250); //C off +
-        output.send([0x90, 62, 0x7f], performance.now() + 500); //D on +
-        output.send([0x80, 62, 0x00], performance.now() + 250);//D off +
-        output.send([0x90, 64, 0x7f], performance.now() + 500); //E on
-        output.send([0x80, 64, 0x00], performance.now() + 250); //E off
-        output.send([0x90, 65, 0x7f], performance.now() + 500);//F on
-        output.send([0x80, 65, 0x00], performance.now() + 250); //F off
-        output.send([0x90, 67, 0x7f], performance.now() + 500); //G on
-        output.send([0x80, 67, 0x00], performance.now() + 250);//G off
-        output.send([0x90, 69, 0x7f], performance.now() + 500); //A on
-        output.send([0x80, 69, 0x00], performance.now() + 250); //A off
-        output.send([0x90, 71, 0x7f], performance.now() + 500);//B on
-        output.send([0x80, 71, 0x00], performance.now() + 250);//B off
-        output.send([0x90, 72, 0x7f], performance.now() + 250);// High C On
-        output.send([0x80, 72, 0x00], performance.now() + 250);// High C Off
-            let output = MIDIAccess.outputs.get([1])
-            MIDIOutput.send(noteOn);
-    }
- };
+dmajTrigger.addEventListener("click", () => {
+    playScale([62, 64, 66, 67, 69, 71, 73, 74]);        //d maj scale midi numbers
+});
 
+emajTrigger.addEventListener("click", () => {
+    playScale([64, 66, 68, 69, 71, 73, 75, 76]); // E Maj scale midi numbers
+});
 
+fmajTrigger.addEventListener("click", () => {
+    playScale([65, 67, 69, 70, 72, 74, 76, 77]); // F Maj scale midi numbers
+});
 
- function PlayDMaj(MIDIAccess, portID)  {
-    if (addEventListener("click", dmajTrigger)) {       ////function, when dmaj trig button is clicked, the midi information wll be sent out.
-    const noteOn = [0x90, 62, 0x7f]; //note on, middle D, Full velocity ON
-        output.send([0x80, 62, 0x00], performance.now() + 250); //D off +
-        output.send([0x90, 64, 0x7f], performance.now() + 500); //E on +
-        output.send([0x80, 64, 0x00], performance.now() + 250);//E off +
-        output.send([0x90, 66, 0x7f], performance.now() + 500); //F# on
-        output.send([0x80, 66, 0x00], performance.now() + 250); //F# off
-        output.send([0x90, 67, 0x7f], performance.now() + 500);//G on
-        output.send([0x80, 67, 0x00], performance.now() + 250); //G off
-        output.send([0x90, 69, 0x7f], performance.now() + 500); //A on
-        output.send([0x80, 69, 0x00], performance.now() + 250);//A off
-        output.send([0x90, 71, 0x7f], performance.now() + 500); //B on
-        output.send([0x80, 71, 0x00], performance.now() + 250); //B off
-        output.send([0x90, 73, 0x7f], performance.now() + 500);//C# on
-        output.send([0x80, 73, 0x00], performance.now() + 250);//C# off
-        output.send([0x90, 74, 0x7f], performance.now() + 250);//High D On
-        output.send([0x80, 74, 0x00], performance.now() + 250);//High D Off
-            let output = MIDIAccess.outputs.get([1])
-            MIDIOutput.send(noteOn);
-    }
- };
-function noteOffMsg (MIDIAccess, portID)   {
-    if (addEventListener("click", stopTrigger)) {
-        const noteOff = [0x80, 0x00];
-        let output = MIDIAccess.outputs.get([1])
-        MIDIOutput.send(noteOff);       //note off message when button clicked
-    };
+gmajTrigger.addEventListener("click", () => {
+    playScale([67, 69, 71, 72, 74, 76, 78, 79]); // G Maj scale midi numbers
+});
+
+amajTrigger.addEventListener("click", () => {
+    playScale([69, 71, 73, 74, 76, 78, 80, 81]); // A Maj scale midi numbers
+});
+
+bmajorTrigger.addEventListener("click", () => {
+    playScale([71, 73, 75, 76, 78, 80, 82, 83]); // B Maj scale midi numbers
+});
+stopTrigger.addEventListener("click", stopAllNotes); //stop notes
 }
+
+function playScale(notes)   {
+    if(!output) return;
+
+    const now = performance.now(); //now
+    const noteDuration = 250; //time in ms of note
+    const delay = 150; //delay between
+
+    notes.forEach((note, i) => {
+        const timeON = now + i * delay; //time on happens now + int times delaybetween
+        const timeOff = timeON + noteDuration; // math equates to off
+        output.send([0x90, note, 0x7f], timeON); //note on
+        output.send([0x80, note, 0x00], timeOff); //note off
+    });
+}
+
+
+function stopAllNotes() {
+    if (!output) return;
+    for (let note = 0; note < 128; note++)  { //notes should be scheduled off in diff ways 
+        output.send(0x80, note, 0x00);
+    }
+}
+
  
- 
 
-console.log(MIDIMessageEvent)   //logs midi messages just for fun
-
-
-
+console.log(MIDIMessageEvent);   //logs midi messages just for fun

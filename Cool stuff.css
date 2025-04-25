@@ -1,46 +1,47 @@
 body    {
-    background-color: black;
+    background-color: rgb(9, 12, 116);
 }
 head    {
     color: peru;
-    text-align: left;
-    
+    text-align: center;
+    text-shadow: #ed12a8;
 }
 h1  {
     color: rgb(114, 22, 200);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: left;
+    text-align: center;
     text-decoration: solid;
 }
 h2  {
     color: darkred;
-    text-align: left;
+    text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 h3  {
     color: rgb(200, 17, 17);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: left;
+    text-align: center;
 }
 h4  {
     color: red;
-    text-align: left;
+    text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: small;
 }
 p   {
     color: blueviolet;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: left;
+    text-align: center;
     color-scheme: dark;
 }
 option  {
-    text-align: right;
+    text-align: center;
 }
 button  {
-    color: #ed12a8;
-    text-align: center;
-    width: 200px;
+    border: #ed12a8;
+    color: #c90e8e;
+    text-align: center center;
+    width: 100px;
 }
 select  {
     width: 400px;
@@ -49,6 +50,6 @@ select  {
 }
 div {
     color: aqua;
-    text-align: left;
+    text-align: center;
 };
 
