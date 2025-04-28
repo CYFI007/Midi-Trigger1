@@ -76,13 +76,6 @@ function playScale(notes)   {
 }
 
 
-function stopAllNotes() {
-    if (!output) return;
-    for (let note = 0; note < 128; note++)  { //notes should be scheduled off in diff ways 
-        output.send(0x80, note, 0x00);
-    }
-}
-
  
 
-console.log(MIDIMessageEvent);   //logs midi messages just for fun
+console.log(MIDIConnectionEvent);   //logs midi messages just for fun

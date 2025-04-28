@@ -42,6 +42,7 @@ button  {
     color: #c90e8e;
     text-align: center center;
     width: 100px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 select  {
     width: 400px;
