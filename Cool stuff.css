@@ -34,6 +34,14 @@ p   {
     text-align: center;
     color-scheme: dark;
 }
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
 option  {
     text-align: center;
 }
